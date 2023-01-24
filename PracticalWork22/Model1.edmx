@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище OrganizationsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Organizations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="6" />
+          <Property Name="Employees" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pages" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SubscriptionTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubscriptionDate" Type="date" Nullable="false" />
+          <Property Name="Months" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="Publication" Type="int" Nullable="false" />
+          <Property Name="Organization" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Organizations.dbo.View_1" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="SubscriptionDate" />
+            <PropertyRef Name="Months" />
+            <PropertyRef Name="Discount" />
+            <PropertyRef Name="PublName" />
+            <PropertyRef Name="OrgName" />
+            <PropertyRef Name="Pages" />
+          </Key>
+          <Property Name="SubscriptionDate" Type="date" Nullable="false" />
+          <Property Name="Months" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="PublName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrgName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pages" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_SubscriptionTable_Organizations">
+          <End Role="Organizations" Type="Self.Organizations" Multiplicity="1" />
+          <End Role="SubscriptionTable" Type="Self.SubscriptionTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionTable">
+              <PropertyRef Name="Organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionTable_Publications">
+          <End Role="Publications" Type="Self.Publications" Multiplicity="1" />
+          <End Role="SubscriptionTable" Type="Self.SubscriptionTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionTable">
+              <PropertyRef Name="Publication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище OrganizationsModelContainer">
+          <EntitySet Name="Organizations" EntityType="Self.Organizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publications" EntityType="Self.Publications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionTable" EntityType="Self.SubscriptionTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1].[SubscriptionDate] AS [SubscriptionDate], 
+    [View_1].[Months] AS [Months], 
+    [View_1].[Discount] AS [Discount], 
+    [View_1].[PublName] AS [PublName], 
+    [View_1].[OrgName] AS [OrgName], 
+    [View_1].[Pages] AS [Pages], 
+    [View_1].[Photo] AS [Photo]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_SubscriptionTable_Organizations" Association="Self.FK_SubscriptionTable_Organizations">
+            <End Role="Organizations" EntitySet="Organizations" />
+            <End Role="SubscriptionTable" EntitySet="SubscriptionTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionTable_Publications" Association="Self.FK_SubscriptionTable_Publications">
+            <End Role="Publications" EntitySet="Publications" />
+            <End Role="SubscriptionTable" EntitySet="SubscriptionTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrganizationsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Organizations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Employees" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubscriptionTable" Relationship="Self.FK_SubscriptionTable_Organizations" FromRole="Organizations" ToRole="SubscriptionTable" />
+        </EntityType>
+        <EntityType Name="Publications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pages" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubscriptionTable" Relationship="Self.FK_SubscriptionTable_Publications" FromRole="Publications" ToRole="SubscriptionTable" />
+        </EntityType>
+        <EntityType Name="SubscriptionTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubscriptionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Months" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="Publication" Type="Int32" Nullable="false" />
+          <Property Name="Organization" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Organizations" Relationship="Self.FK_SubscriptionTable_Organizations" FromRole="SubscriptionTable" ToRole="Organizations" />
+          <NavigationProperty Name="Publications" Relationship="Self.FK_SubscriptionTable_Publications" FromRole="SubscriptionTable" ToRole="Publications" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_SubscriptionTable_Organizations">
+          <End Role="Organizations" Type="Self.Organizations" Multiplicity="1" />
+          <End Role="SubscriptionTable" Type="Self.SubscriptionTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionTable">
+              <PropertyRef Name="Organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionTable_Publications">
+          <End Role="Publications" Type="Self.Publications" Multiplicity="1" />
+          <End Role="SubscriptionTable" Type="Self.SubscriptionTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionTable">
+              <PropertyRef Name="Publication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OrganizationsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Organizations" EntityType="Self.Organizations" />
+          <EntitySet Name="Publications" EntityType="Self.Publications" />
+          <EntitySet Name="SubscriptionTable" EntityType="Self.SubscriptionTable" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_SubscriptionTable_Organizations" Association="Self.FK_SubscriptionTable_Organizations">
+            <End Role="Organizations" EntitySet="Organizations" />
+            <End Role="SubscriptionTable" EntitySet="SubscriptionTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionTable_Publications" Association="Self.FK_SubscriptionTable_Publications">
+            <End Role="Publications" EntitySet="Publications" />
+            <End Role="SubscriptionTable" EntitySet="SubscriptionTable" />
+          </AssociationSet>
+          <EntitySet Name="View_1" EntityType="OrganizationsModel.View_1" />
+        </EntityContainer>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="SubscriptionDate" />
+            <PropertyRef Name="Months" />
+            <PropertyRef Name="Discount" />
+            <PropertyRef Name="PublName" />
+            <PropertyRef Name="OrgName" />
+            <PropertyRef Name="Pages" />
+          </Key>
+          <Property Name="SubscriptionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Months" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="PublName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pages" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище OrganizationsModelContainer" CdmEntityContainer="OrganizationsEntities">
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="OrganizationsModel.Organizations">
+              <MappingFragment StoreEntitySet="Organizations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Employees" ColumnName="Employees" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publications">
+            <EntityTypeMapping TypeName="OrganizationsModel.Publications">
+              <MappingFragment StoreEntitySet="Publications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionTable">
+            <EntityTypeMapping TypeName="OrganizationsModel.SubscriptionTable">
+              <MappingFragment StoreEntitySet="SubscriptionTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubscriptionDate" ColumnName="SubscriptionDate" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Publication" ColumnName="Publication" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OrganizationsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="OrganizationsModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="OrgName" ColumnName="OrgName" />
+                <ScalarProperty Name="PublName" ColumnName="PublName" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="SubscriptionDate" ColumnName="SubscriptionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
