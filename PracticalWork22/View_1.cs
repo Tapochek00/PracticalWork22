@@ -26,12 +26,13 @@ namespace PracticalWork22
         {
             get
             {
-                if (this.Photo == null) return null;
+                string namePhoto;
+                if (this.Photo == null) return namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + "unknown.png";
                 else
                 {
-                    string namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
-                    return namePhoto;
+                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
                 }
+                return namePhoto;
             }
         }
     }

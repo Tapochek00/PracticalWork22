@@ -27,20 +27,20 @@ namespace PracticalWork22
         public int Pages { get; set; }
         public double Price { get; set; }
         public string Photo { get; set; }
-
         public string PhotoFull
         {
             get
             {
-                if (this.Photo == null) return null;
+                string namePhoto;
+                if (this.Photo == null) return namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + "unknown.png";
                 else
                 {
-                    string namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
-                    return namePhoto;
+                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
                 }
+                return namePhoto;
             }
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubscriptionTable> SubscriptionTable { get; set; }
     }

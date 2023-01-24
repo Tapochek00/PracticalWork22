@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="Практическая работа №22" Height="300" Width="1000"
+        Title="Практическая работа №22" Height="500" Width="1000"
         WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <ListView x:Name="listview" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FFEFEEEE">
