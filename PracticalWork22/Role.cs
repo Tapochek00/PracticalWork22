@@ -11,37 +11,19 @@ namespace PracticalWork22
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-
-    public partial class Publications
+    
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Publications()
+        public Role()
         {
-            this.SubscriptionTable = new HashSet<SubscriptionTable>();
+            this.User = new HashSet<User>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public int Pages { get; set; }
-        public double Price { get; set; }
-        public string Photo { get; set; }
-
-        public string PhotoFull
-        {
-            get
-            {
-                string namePhoto;
-                if (this.Photo == null)
-                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\unknown.png";
-                else
-                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
-                return namePhoto;
-            }
-        }
-
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubscriptionTable> SubscriptionTable { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="Практическая работа №22" Height="500" Width="1000"
+        Title="Практическая работа №22" Height="500" Width="1000" Initialized="mainWin_Initialized"
         WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-
-        <ListView x:Name="listview" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FFEFEEEE">
+        <Menu VerticalAlignment="Top" HorizontalAlignment="Left">
+            <MenuItem Header="Меню"></MenuItem>
+        </Menu>
+        <ListView x:Name="listview" Grid.Row="0" Margin="0, 20, 0, 0"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  Background="#FFF9F9F9">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border
@@ -35,7 +39,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Image Grid.RowSpan="3" Stretch="UniformToFill"
+                            <Image Grid.RowSpan="3" Stretch="UniformToFill" MaxWidth="100" MaxHeight="100"
                                    HorizontalAlignment="Center" Source="{Binding PhotoFull}">
                                 <!--<Image.Source>
                                     <Binding Path="PhotoFull">
@@ -59,15 +63,21 @@
             </ListView.ItemTemplate>
         </ListView>
         
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1">
-            <!--<Button x:Name="Add" Content="Добавить запись" Margin="15" Padding="7" Click="Add_Click"/>
-            <Button x:Name="Edit" Content="Редактировать запись" Margin="15" Padding="7" Click="Edit_Click"/>
-            <Button x:Name="View" Content="Просмотр" Margin="15" Padding="7" Click="View_Click"/>
-            <Button x:Name="Delete" Content="Удалить запись" Margin="15" Padding="7" Click="Delete_Click"/>
-            <Button x:Name="Filter" Content="Фильтр" Margin="15" Padding="7" Click="Filter_Click"/>
-            <Button x:Name="Update" Content="Найти и заменить" Margin="15" Padding="7" Click="Update_Click"/>
-            <Button x:Name="FindAndDelete" Content="Найти и удалить" Margin="15" Padding="7" Click="FindAndDelete_Click"/>
-            <Button x:Name="Reset" Content="Сброс" Margin="15" Padding="7" Click="Reset_Click"/>
-        --></StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+            <Button x:Name="Search_btn" Content="Поиск" Padding="30, 8" Margin="20, 10" FontSize="16" Background="#FF8C8C8C" Foreground="White" Click="Search_btn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Filter_btn" Content="Фильтр" Padding="30, 8" FontSize="16" Margin="20, 10" Background="#FF8C8C8C" Foreground="White" Click="Filter_btn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

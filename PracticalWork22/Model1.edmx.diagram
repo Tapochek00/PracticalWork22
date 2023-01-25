@@ -12,6 +12,9 @@
         <AssociationConnector Association="OrganizationsModel.FK_SubscriptionTable_Organizations" ManuallyRouted="false" />
         <AssociationConnector Association="OrganizationsModel.FK_SubscriptionTable_Publications" ManuallyRouted="false" />
         <EntityTypeShape EntityType="OrganizationsModel.View_1" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OrganizationsModel.Role" Width="1.5" PointX="5.375" PointY="5.25" />
+        <EntityTypeShape EntityType="OrganizationsModel.User" Width="1.5" PointX="7.625" PointY="4.875" />
+        <AssociationConnector Association="OrganizationsModel.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

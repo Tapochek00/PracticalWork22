@@ -1,0 +1,12 @@
+public string PhotoFull
+        {
+            get
+            {
+                string namePhoto;
+                if (this.Photo == null)
+                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\unknown.png";
+                else
+                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
+                return namePhoto;
+            }
+        }

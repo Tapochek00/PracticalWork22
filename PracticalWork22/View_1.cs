@@ -22,16 +22,16 @@ namespace PracticalWork22
         public string OrgName { get; set; }
         public int Pages { get; set; }
         public string Photo { get; set; }
+
         public string PhotoFull
         {
             get
             {
                 string namePhoto;
-                if (this.Photo == null) return namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + "unknown.png";
+                if (this.Photo == null)
+                    namePhoto = Directory.GetCurrentDirectory() + "\\img\\unknown.png";
                 else
-                {
                     namePhoto = Directory.GetCurrentDirectory() + "\\img\\" + Photo;
-                }
                 return namePhoto;
             }
         }
