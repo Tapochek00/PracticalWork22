@@ -1,7 +1,5 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +15,11 @@ using System.Windows.Shapes;
 namespace PracticalWork22
 {
     /// <summary>
-    /// Логика взаимодействия для AddRecord.xaml
+    /// Логика взаимодействия для EditRecord.xaml
     /// </summary>
-    public partial class AddRecord : Window
+    public partial class EditRecord : Window
     {
-        public AddRecord()
+        public EditRecord()
         {
             InitializeComponent();
         }
@@ -30,7 +28,6 @@ namespace PracticalWork22
         {
             try
             {
-                SubscriptionTable sub = new SubscriptionTable();
                 int mon = int.Parse(months.Text);
 
                 StringBuilder errors = new StringBuilder();
@@ -60,7 +57,6 @@ namespace PracticalWork22
                 sub.Publication = publ.Id;
                 sub.Organization = org.Id;
 
-                db.SubscriptionTable.Add(sub);
                 db.SaveChanges();
                 Close();
             }
@@ -68,13 +64,17 @@ namespace PracticalWork22
         }
 
         OrganizationsEntities db = OrganizationsEntities.GetContext();
+        SubscriptionTable sub;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ComboBoxItem comboItem;
+            sub = db.SubscriptionTable.Find(Data.Id);
+
             foreach (var i in db.Publications)
             {
                 comboItem = new ComboBoxItem();
                 comboItem.Content = i.Id.ToString() + " " + i.Name;
+                if (i.Id == sub.Publication) comboItem.IsSelected = true;
                 comboPubl.Items.Add(comboItem);
             }
 
@@ -82,8 +82,12 @@ namespace PracticalWork22
             {
                 comboItem = new ComboBoxItem();
                 comboItem.Content = i.Id.ToString() + " " + i.Name;
+                if (i.Id == sub.Organization) comboItem.IsSelected = true;
                 comboOrg.Items.Add(comboItem);
             }
+
+            months.Text = sub.Months.ToString();
+            discount.Text = sub.Discount.ToString();
         }
     }
 }

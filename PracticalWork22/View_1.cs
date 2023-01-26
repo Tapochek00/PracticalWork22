@@ -22,7 +22,6 @@ namespace PracticalWork22
         public string OrgName { get; set; }
         public int Pages { get; set; }
         public string Photo { get; set; }
-
         public string PhotoFull
         {
             get
@@ -35,5 +34,6 @@ namespace PracticalWork22
                 return namePhoto;
             }
         }
+        public int Id { get; set; }
     }
 }

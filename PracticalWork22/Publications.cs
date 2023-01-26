@@ -27,7 +27,6 @@ namespace PracticalWork22
         public int Pages { get; set; }
         public double Price { get; set; }
         public string Photo { get; set; }
-
         public string PhotoFull
         {
             get

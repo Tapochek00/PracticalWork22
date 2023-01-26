@@ -39,8 +39,11 @@ namespace PracticalWork22
             login.ShowDialog();
 
             if (Data.Login == false) Close();
-            if (Data.Right == "Клиент") ;
-            else;
+            if (Data.Right != "Администратор")
+            {
+                Add.IsEnabled = false;
+                Edit.IsEnabled = false;
+            }
 
             mainWin.Title = Data.FullName + " - " + Data.Right;
         }
@@ -99,6 +102,24 @@ namespace PracticalWork22
             AddRecord add = new AddRecord();
             add.Owner = this;
             add.ShowDialog();
+
+            db.View_1.Load();
+            listview.ItemsSource = db.View_1.Local.ToBindingList();
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            int indexRow = listview.SelectedIndex;
+            if (indexRow != -1)
+            {
+                View_1 row = (View_1)listview.Items[indexRow];
+                Data.Id = row.Id;
+                EditRecord edit = new EditRecord();
+                edit.Owner = this;
+                edit.ShowDialog();
+                db.View_1.Load();
+                listview.ItemsSource = db.View_1.Local.ToBindingList();
+            }
         }
     }
 }

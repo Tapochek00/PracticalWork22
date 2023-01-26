@@ -68,6 +68,7 @@
 предупреждение 6002: В таблице или представлении "Organizations.dbo.View_1" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="View_1">
           <Key>
+            <PropertyRef Name="Id" />
             <PropertyRef Name="SubscriptionDate" />
             <PropertyRef Name="Months" />
             <PropertyRef Name="Discount" />
@@ -75,6 +76,7 @@
             <PropertyRef Name="OrgName" />
             <PropertyRef Name="Pages" />
           </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="SubscriptionDate" Type="date" Nullable="false" />
           <Property Name="Months" Type="int" Nullable="false" />
           <Property Name="Discount" Type="float" Nullable="false" />
@@ -128,6 +130,7 @@
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [View_1].[Id] AS [Id], 
     [View_1].[SubscriptionDate] AS [SubscriptionDate], 
     [View_1].[Months] AS [Months], 
     [View_1].[Discount] AS [Discount], 
@@ -253,6 +256,7 @@
             <PropertyRef Name="PublName" />
             <PropertyRef Name="OrgName" />
             <PropertyRef Name="Pages" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="SubscriptionDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Months" Type="Int32" Nullable="false" />
@@ -261,6 +265,7 @@
           <Property Name="OrgName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Pages" Type="Int32" Nullable="false" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -348,6 +353,7 @@
           <EntitySetMapping Name="View_1">
             <EntityTypeMapping TypeName="OrganizationsModel.View_1">
               <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Pages" ColumnName="Pages" />
                 <ScalarProperty Name="OrgName" ColumnName="OrgName" />

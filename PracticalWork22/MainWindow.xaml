@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
         Title="Практическая работа №22" Height="500" Width="1000" Initialized="mainWin_Initialized"
-        WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC">
+        WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC" ResizeMode="NoResize">
     <Grid>
         <Grid.Resources>
             <Style TargetType="Border">
@@ -91,6 +91,13 @@
                 </Button.Resources>
             </Button>
             <Button x:Name="Add" Content="Добавить запись" Width="160" FontSize="16" Margin="20, 10" Click="Add_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Edit" Content="Редактировать запись" Width="200" FontSize="16" Margin="20, 10" Click="Edit_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

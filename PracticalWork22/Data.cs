@@ -21,5 +21,7 @@ namespace PracticalWork22
         public static string Filter;
 
         public static string FiltParam;
+
+        public static int Id;
     }
 }
