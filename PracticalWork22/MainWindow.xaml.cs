@@ -121,5 +121,10 @@ namespace PracticalWork22
                 listview.ItemsSource = db.View_1.Local.ToBindingList();
             }
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
