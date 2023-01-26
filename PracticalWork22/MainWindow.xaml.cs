@@ -57,8 +57,9 @@ namespace PracticalWork22
                 string date = row.SubscriptionDate.ToString();
                 string publ = row.PublName;
                 string org = row.OrgName;
+                string selectedDate = Data.Date.ToString();
 
-                if (date.Contains(Data.Date) &&
+                if (date.Contains(selectedDate) &&
                     publ.Contains(Data.PublName) &&
                     org.Contains(Data.OrgName))
                 {
@@ -75,11 +76,29 @@ namespace PracticalWork22
             win.Owner = this;
             win.ShowDialog();
 
-            var table = db.View_1.ToList();
+            try
+            {
+                var table = db.View_1.ToList();
+                IEnumerable<View_1> filtered;
 
-            if (Data.FiltParam == "Дата подписки") ;
+                if (Data.FiltParam == "Издание") filtered = table.Where(p => p.PublName.Contains(Data.Filter));
+                else filtered = table.Where(p => p.OrgName.Contains(Data.Filter));
+                listview.ItemsSource = filtered;
+            }
+            catch { }
+        }
 
-                var filtered = table.Where(p => p.SubscriptionDate);
+        private void Reset_btn_Click(object sender, RoutedEventArgs e)
+        {
+            db.View_1.Load();
+            listview.ItemsSource = db.View_1.Local.ToBindingList();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AddRecord add = new AddRecord();
+            add.Owner = this;
+            add.ShowDialog();
         }
     }
 }

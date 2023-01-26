@@ -26,7 +26,7 @@ namespace PracticalWork22
 
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
-            Data.Date = Date.SelectedDate.ToString();
+            Data.Date = (DateTime)Date.SelectedDate;
             Data.PublName = Publication.Text;
             Data.OrgName = Organization.Text;
             Close();

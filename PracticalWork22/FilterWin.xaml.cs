@@ -27,23 +27,38 @@ namespace PracticalWork22
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
             Data.FiltParam = combo.Text;
-            DatePicker date;
-            TextBox tb;
+            Data.Filter = filt.Text;
+            Close();
+        }
 
-            if (combo.Text == "Дата подписки")
+        OrganizationsEntities db = OrganizationsEntities.GetContext();
+        private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filt.Items.Clear();
+            if (combo.Text == "Издание")
             {
-                date = new DatePicker { HorizontalAlignment = HorizontalAlignment.Center, Width = 100 };
-                grid.Children.Add(date);
-                Data.Filter = date.SelectedDate.ToString();
+                foreach(var publ in db.Organizations)
+                {
+                    ComboBoxItem comboItem = new ComboBoxItem();
+                    comboItem.Content = publ.Name;
+                    filt.Items.Add(comboItem);
+                }
             }
             else
             {
-                tb = new TextBox { HorizontalAlignment = HorizontalAlignment.Center, Width = 100 };
-                grid.Children.Add(tb);
-                Data.Filter = tb.Text;
+                foreach(var org in db.Publications)
+                {
+                    ComboBoxItem comboItem = new ComboBoxItem();
+                    comboItem.Content = org.Name;
+                    filt.Items.Add(comboItem);
+                }
             }
+            filt.IsEnabled = true;
+        }
 
-            Close();
+        private void filt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Search_btn.IsEnabled = true;
         }
     }
 }

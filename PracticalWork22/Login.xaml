@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="Авторизация" Height="300" Width="200"
+        Title="Авторизация" Height="350" Width="200"
         ResizeMode="NoResize" Activated="Window_Activated" WindowStartupLocation="CenterScreen">
     <StackPanel x:Name="stackPanel">
         <Label>Пользователь</Label>
@@ -23,10 +23,10 @@
             <TextBox x:Name="tbCaptcha" Grid.Row="1" Margin="5"/>
         </Grid>
         <Button x:Name="Enter" Content="Войти" IsDefault="True" Click="Enter_Click"
-                Margin="3" Padding="3"/>
+                Margin="3" Padding="3" Width="190"/>
         <Button x:Name="Cancel" Content="Отмена" IsDefault="True" Click="Cancel_Click"
-                Margin="3" Padding="3"/>
+                Margin="3" Padding="3"  Width="190"/>
         <Button x:Name="GuestEnter" Content="Войти как гость" IsDefault="True" Click="GuestEnter_Click"
-                Margin="3" Padding="3"/>
+                Margin="3" Padding="3" Width="190"/>
     </StackPanel>
 </Window>

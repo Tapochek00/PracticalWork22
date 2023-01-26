@@ -12,7 +12,7 @@ namespace PracticalWork22
         public static string FullName;
         public static string Right;
 
-        public static string Date;
+        public static DateTime Date;
 
         public static string PublName;
 

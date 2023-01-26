@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="SearchWin" Height="250" Width="550"  Background="#FFDEDCDC" WindowStartupLocation="CenterOwner">
+        Title="Фильтр" Height="250" Width="550" Background="#FFF9F9F9"
+        WindowStartupLocation="CenterOwner">
     <StackPanel VerticalAlignment="Center">
         <Label HorizontalAlignment="Center">Выберите параметр фильтра</Label>
-        <ComboBox x:Name="combo" HorizontalAlignment="Center" Margin="0, 20">
-            <ComboBoxItem Content="Дата подписки" IsSelected="True"/>
+        <ComboBox x:Name="combo" HorizontalAlignment="Center" Margin="0, 20"
+                  SelectionChanged="combo_SelectionChanged" Width="100">
             <ComboBoxItem Content="Издание"/>
             <ComboBoxItem Content="Организация"/>
         </ComboBox>
-        <Grid x:Name="grid">
-        </Grid>
-        <Button x:Name="Search_btn" Content="Фильтр" Padding="30, 8" Margin="0, 20"
-                Background="#FF8C8C8C" Foreground="White"
-                Click="Search_btn_Click" HorizontalAlignment="Center">
+        <ComboBox x:Name="filt" HorizontalAlignment = "Center" Width="100" Height="20"
+                  IsEnabled="False" SelectionChanged="filt_SelectionChanged"/>
+        <Button x:Name="Search_btn" Content="Фильтр" Margin="0, 20" Click="Search_btn_Click" IsEnabled="False">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>

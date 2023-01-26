@@ -8,6 +8,11 @@
         Title="Практическая работа №22" Height="500" Width="1000" Initialized="mainWin_Initialized"
         WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC">
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="0"/>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
             <RowDefinition Height="2*"/>
@@ -39,7 +44,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Image Grid.RowSpan="3" Stretch="UniformToFill" MaxWidth="100" MaxHeight="100"
+                            <Image Grid.RowSpan="3" Stretch="UniformToFill" Width="100" Height="100"
                                    HorizontalAlignment="Center" Source="{Binding PhotoFull}">
                                 <!--<Image.Source>
                                     <Binding Path="PhotoFull">
@@ -64,14 +69,28 @@
         </ListView>
         
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-            <Button x:Name="Search_btn" Content="Поиск" Padding="30, 8" Margin="20, 10" FontSize="16" Background="#FF8C8C8C" Foreground="White" Click="Search_btn_Click">
+            <Button x:Name="Search_btn" Content="Поиск" Margin="20, 10" FontSize="16" Click="Search_btn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Filter_btn" Content="Фильтр" Padding="30, 8" FontSize="16" Margin="20, 10" Background="#FF8C8C8C" Foreground="White" Click="Filter_btn_Click">
+            <Button x:Name="Filter_btn" Content="Фильтр" FontSize="16" Margin="20, 10" Click="Filter_btn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Reset_btn" Content="Сброс" FontSize="16" Margin="20, 10" Click="Reset_btn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Add" Content="Добавить запись" Width="160" FontSize="16" Margin="20, 10" Click="Add_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
