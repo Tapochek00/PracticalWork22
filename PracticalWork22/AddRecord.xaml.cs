@@ -39,7 +39,7 @@ namespace PracticalWork22
                 if (comboOrg.Text.Length == 0)
                     errors.AppendLine("Выберите организацию");
                 if (months.Text.Length == 0) errors.AppendLine("Введите количество месяцев");
-                if (mon > 12 || mon <= 0) errors.AppendLine("Введите правильное количество месяцев");
+                if (mon <= 0) errors.AppendLine("Введите правильное количество месяцев");
 
                 if (errors.Length > 0)
                 {
@@ -84,6 +84,22 @@ namespace PracticalWork22
                 comboItem.Content = i.Id.ToString() + " " + i.Name;
                 comboOrg.Items.Add(comboItem);
             }
+        }
+
+        private void months_KeyDown(object sender, KeyEventArgs e)
+        {
+            Key[] nums = { Key.NumPad0,
+                           Key.NumPad1,
+                           Key.NumPad2,
+                           Key.NumPad3,
+                           Key.NumPad4,
+                           Key.NumPad5,
+                           Key.NumPad6,
+                           Key.NumPad7,
+                           Key.NumPad8,
+                           Key.NumPad9
+            };
+            if (!nums.Contains(e.Key)) e.Handled = true;
         }
     }
 }

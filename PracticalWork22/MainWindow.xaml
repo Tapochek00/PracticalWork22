@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="Практическая работа №22" Height="500" Width="1000" Initialized="mainWin_Initialized"
-        WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC" ResizeMode="NoResize">
+        Title="Практическая работа №22" Height="500" Width="1100" Initialized="mainWin_Initialized"
+        WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded" Background="#FFDEDCDC" ResizeMode="CanMinimize">
     <Grid>
         <Grid.Resources>
             <Style TargetType="Border">
@@ -24,6 +24,7 @@
                 <MenuItem Header="Сброс" Click="Reset_btn_Click"/>
                 <MenuItem x:Name="AddMenu" Header="Добавить запись" Click="Add_Click"/>
                 <MenuItem x:Name="EditMenu" Header="Редактировать запись" Click="Edit_Click"/>
+                <MenuItem x:Name="DeleteMenu" Header="Удалить запись" Click="Delete_Click"/>
             </MenuItem>
             <MenuItem x:Name="Exit" Header="Выход" Click="Exit_Click"/>
         </Menu>
@@ -53,13 +54,6 @@
 
                             <Image Grid.RowSpan="3" Stretch="UniformToFill" Width="100" Height="100"
                                    HorizontalAlignment="Center" Source="{Binding PhotoFull}">
-                                <!--<Image.Source>
-                                    <Binding Path="PhotoFull">
-                                        <Binding.TargetNullValue>
-                                            <ImageSource>/img/unknown.png</ImageSource>
-                                        </Binding.TargetNullValue>
-                                    </Binding>
-                                </Image.Source>-->
                             </Image>
                             <TextBlock Text="{Binding OrgName, StringFormat={}Название организации: {0}}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
                             <TextBlock Text="{Binding PublName, StringFormat={}Название издания: {0}}"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
@@ -76,35 +70,42 @@
         </ListView>
         
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-            <Button x:Name="Search_btn" Content="Поиск" Margin="20, 10" FontSize="16" Click="Search_btn_Click">
+            <Button x:Name="Search_btn" Content="Поиск" Margin="0, 0, 10, 0" FontSize="16" Click="Search_btn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Filter_btn" Content="Фильтр" FontSize="16" Margin="20, 10" Click="Filter_btn_Click">
+            <Button x:Name="Filter_btn" Content="Фильтр" FontSize="16" Margin="10, 10" Click="Filter_btn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Reset_btn" Content="Сброс" FontSize="16" Margin="20, 10" Click="Reset_btn_Click">
+            <Button x:Name="Reset_btn" Content="Сброс" FontSize="16" Margin="10, 10" Click="Reset_btn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Add" Content="Добавить запись" Width="160" FontSize="16" Margin="20, 10" Click="Add_Click">
+            <Button x:Name="Add" Content="Добавить запись" Width="160" FontSize="16" Margin="10, 10" Click="Add_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Edit" Content="Редактировать запись" Width="200" FontSize="16" Margin="20, 10" Click="Edit_Click">
+            <Button x:Name="Edit" Content="Редактировать запись" Width="200" FontSize="16" Margin="10, 10" Click="Edit_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Delete" Content="Удалить запись" Width="200" FontSize="16" Margin="10, 10" Click="Delete_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

@@ -23,6 +23,7 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#B298DC"/>
                     <Setter Property="Foreground"  Value="#6F2DBD"/>
+                    <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Background" Value="LightGray"/>

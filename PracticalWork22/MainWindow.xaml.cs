@@ -43,8 +43,10 @@ namespace PracticalWork22
             {
                 Add.IsEnabled = false;
                 Edit.IsEnabled = false;
+                Delete.IsEnabled = false;
                 AddMenu.IsEnabled = false;
                 EditMenu.IsEnabled = false;
+                DeleteMenu.IsEnabled = false;
             }
 
             mainWin.Title = Data.FullName + " - " + Data.Right;
@@ -127,6 +129,29 @@ namespace PracticalWork22
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result;
+            result = MessageBox.Show("Удалить запись?", "Удаление записи",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    View_1 viewRow = (View_1)listview.SelectedValue;
+                    SubscriptionTable row = db.SubscriptionTable.Find(viewRow.Id);
+                    db.SubscriptionTable.Remove(row);
+                    db.SaveChanges();
+                    listview.Items.Refresh();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("Выберите запись");
+                }
+            }
         }
     }
 }
