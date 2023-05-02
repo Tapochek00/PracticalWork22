@@ -88,6 +88,7 @@ namespace PracticalWork22
 
         private void months_KeyDown(object sender, KeyEventArgs e)
         {
+            // НЕ РАБОТАЕТ ИСПРАВЬ
             Key[] nums = { Key.NumPad0,
                            Key.NumPad1,
                            Key.NumPad2,
