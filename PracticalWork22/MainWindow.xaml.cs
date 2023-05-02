@@ -43,6 +43,8 @@ namespace PracticalWork22
             {
                 Add.IsEnabled = false;
                 Edit.IsEnabled = false;
+                AddMenu.IsEnabled = false;
+                EditMenu.IsEnabled = false;
             }
 
             mainWin.Title = Data.FullName + " - " + Data.Right;

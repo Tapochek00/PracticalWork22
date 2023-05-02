@@ -22,8 +22,8 @@
                 <MenuItem Header="Поиск" Click="Search_btn_Click"/>
                 <MenuItem Header="Фильтр" Click="Filter_btn_Click"/>
                 <MenuItem Header="Сброс" Click="Reset_btn_Click"/>
-                <MenuItem Header="Добавить запись" Click="Add_Click"/>
-                <MenuItem Header="Редактировать запись" Click="Edit_Click"/>
+                <MenuItem x:Name="AddMenu" Header="Добавить запись" Click="Add_Click"/>
+                <MenuItem x:Name="EditMenu" Header="Редактировать запись" Click="Edit_Click"/>
             </MenuItem>
             <MenuItem x:Name="Exit" Header="Выход" Click="Exit_Click"/>
         </Menu>
