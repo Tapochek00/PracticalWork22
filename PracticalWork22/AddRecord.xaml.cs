@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,7 +40,6 @@ namespace PracticalWork22
                 if (comboOrg.Text.Length == 0)
                     errors.AppendLine("Выберите организацию");
                 if (months.Text.Length == 0) errors.AppendLine("Введите количество месяцев");
-                if (mon <= 0) errors.AppendLine("Введите правильное количество месяцев");
 
                 if (errors.Length > 0)
                 {
@@ -86,21 +86,16 @@ namespace PracticalWork22
             }
         }
 
-        private void months_KeyDown(object sender, KeyEventArgs e)
+        private void discount_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            // НЕ РАБОТАЕТ ИСПРАВЬ
-            Key[] nums = { Key.NumPad0,
-                           Key.NumPad1,
-                           Key.NumPad2,
-                           Key.NumPad3,
-                           Key.NumPad4,
-                           Key.NumPad5,
-                           Key.NumPad6,
-                           Key.NumPad7,
-                           Key.NumPad8,
-                           Key.NumPad9
-            };
-            if (!nums.Contains(e.Key)) e.Handled = true;
+            Regex reg = new Regex(@"[^0-9.]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
+        private void months_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^0-9]+");
+            e.Handled = reg.IsMatch(e.Text);
         }
     }
 }

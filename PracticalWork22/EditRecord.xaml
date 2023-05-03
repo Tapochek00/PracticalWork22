@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="Добавить запись" Height="400" Width="200"
+        Title="Редактировать запись" Height="400" Width="200"
         Background="#FFF9F9F9" Loaded="Window_Loaded"  WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Center" Grid.Column="0">
         <Label>Введите количество месяцев</Label>
-        <TextBox x:Name="months" Margin="10"/>
+        <TextBox x:Name="months" Margin="10" PreviewTextInput="months_PreviewTextInput"/>
 
         <Label>Введите скидку</Label>
-        <TextBox x:Name="discount" Margin="10"/>
+        <TextBox x:Name="discount" Margin="10" PreviewTextInput="discount_PreviewTextInput"/>
 
         <Label>Выберите издательство</Label>
         <ComboBox x:Name="comboPubl" Margin="10"/>

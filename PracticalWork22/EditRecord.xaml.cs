@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,7 +37,6 @@ namespace PracticalWork22
                 if (comboOrg.Text.Length == 0)
                     errors.AppendLine("Выберите организацию");
                 if (months.Text.Length == 0) errors.AppendLine("Введите количество месяцев");
-                if (mon > 12 || mon <= 0) errors.AppendLine("Введите правильное количество месяцев");
 
                 if (errors.Length > 0)
                 {
@@ -88,6 +88,18 @@ namespace PracticalWork22
 
             months.Text = sub.Months.ToString();
             discount.Text = sub.Discount.ToString();
+        }
+
+        private void discount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex(@"[^0-9.]+");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
+        private void months_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex("[^0-9]+");
+            e.Handled = reg.IsMatch(e.Text);
         }
     }
 }

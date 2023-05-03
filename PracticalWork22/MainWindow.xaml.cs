@@ -83,6 +83,9 @@ namespace PracticalWork22
             win.Owner = this;
             win.ShowDialog();
 
+            db.View_1.Load();
+            listview.ItemsSource = db.View_1.Local.ToBindingList();
+
             try
             {
                 var table = db.View_1.ToList();
