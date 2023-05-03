@@ -156,5 +156,15 @@ namespace PracticalWork22
                 }
             }
         }
+
+        private void OrganizationsMenuBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PublicationsMenuBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

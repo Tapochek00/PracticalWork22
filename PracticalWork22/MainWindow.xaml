@@ -23,6 +23,8 @@
                 <MenuItem Header="Фильтр" Click="Filter_btn_Click"/>
                 <MenuItem Header="Сброс" Click="Reset_btn_Click"/>
                 <MenuItem x:Name="AddMenu" Header="Добавить запись" Click="Add_Click"/>
+                <MenuItem x:Name="OrganizationsMenuBtn" Header="Организации" Click="OrganizationsMenuBtn_Click"/>
+                <MenuItem x:Name="PublicationsMenuBtn" Header="Издания" Click="PublicationsMenuBtn_Click"/>
                 <MenuItem x:Name="EditMenu" Header="Редактировать запись" Click="Edit_Click"/>
                 <MenuItem x:Name="DeleteMenu" Header="Удалить запись" Click="Delete_Click"/>
             </MenuItem>
