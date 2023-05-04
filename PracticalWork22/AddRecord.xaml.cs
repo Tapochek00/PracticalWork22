@@ -32,8 +32,8 @@ namespace PracticalWork22
             try
             {
                 SubscriptionTable sub = new SubscriptionTable();
-                int mon = int.Parse(months.Text);
 
+                // Проверка корректности ввода
                 StringBuilder errors = new StringBuilder();
                 if (comboPubl.Text.Length == 0)
                     errors.AppendLine("Выберите издание");
@@ -47,19 +47,19 @@ namespace PracticalWork22
                     return;
                 }
 
-                string[] find = comboPubl.Text.Split(' ');
-                Publications publ = db.Publications.Find(int.Parse(find[0]));
+                // Поиск записей в связанных таблицах
+                string[] findPubl = comboPubl.Text.Split(' ');
+                string[] findOrg = comboOrg.Text.Split(' ');
 
-                find = comboOrg.Text.Split(' ');
-                Organizations org = db.Organizations.Find(int.Parse(find[0]));
-
+                // Заполнение данных добавляемой записи
                 sub.SubscriptionDate = DateTime.Now;
                 sub.Months = int.Parse(months.Text);
                 if (discount.Text.Length == 0) sub.Discount = 0;
                 else sub.Discount = int.Parse(discount.Text);
-                sub.Publication = publ.Id;
-                sub.Organization = org.Id;
+                sub.Publication = int.Parse(findPubl[0]);
+                sub.Organization = int.Parse(findOrg[0]);
 
+                // Добавление записи и закрытие окна добавления
                 db.SubscriptionTable.Add(sub);
                 db.SaveChanges();
                 Close();
@@ -71,6 +71,7 @@ namespace PracticalWork22
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ComboBoxItem comboItem;
+            // Заполнение выпадающих списков данными из базы данных
             foreach (var i in db.Publications)
             {
                 comboItem = new ComboBoxItem();
@@ -86,6 +87,7 @@ namespace PracticalWork22
             }
         }
 
+        // Ограничение ввода некорректных значений в поля ввода
         private void discount_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex(@"[^0-9.]+");

@@ -126,6 +126,7 @@ namespace PracticalWork22
                 edit.ShowDialog();
                 db.View_1.Load();
                 listview.ItemsSource = db.View_1.Local.ToBindingList();
+                db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
             }
         }
 
@@ -149,6 +150,7 @@ namespace PracticalWork22
                     db.SubscriptionTable.Remove(row);
                     db.SaveChanges();
                     listview.Items.Refresh();
+                    db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 }
                 catch (ArgumentOutOfRangeException)
                 {

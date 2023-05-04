@@ -26,10 +26,17 @@ namespace PracticalWork22
 
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
-            Data.Date = (DateTime)Date.SelectedDate;
-            Data.PublName = Publication.Text;
-            Data.OrgName = Organization.Text;
-            Close();
+            try
+            {
+                Data.Date = (DateTime)Date.SelectedDate;
+                Data.PublName = Publication.Text;
+                Data.OrgName = Organization.Text;
+                Close();
+            }
+            catch (System.InvalidOperationException)
+            {
+                MessageBox.Show("Введите запрос");
+            }
         }
     }
 }

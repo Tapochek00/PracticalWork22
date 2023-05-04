@@ -25,12 +25,11 @@ namespace PracticalWork22
             InitializeComponent();
         }
 
-        private void AddRecord_btn_Click(object sender, RoutedEventArgs e)
+        private void EditRecord_btn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int mon = int.Parse(months.Text);
-
+                // Проверка корректности ввода
                 StringBuilder errors = new StringBuilder();
                 if (comboPubl.Text.Length == 0)
                     errors.AppendLine("Выберите издание");
@@ -44,19 +43,19 @@ namespace PracticalWork22
                     return;
                 }
 
-                string[] find = comboPubl.Text.Split(' ');
-                Publications publ = db.Publications.Find(int.Parse(find[0]));
+                // Поиск записей в связанных таблицах
+                string[] findPubl = comboPubl.Text.Split(' ');
+                string[] findOrg = comboOrg.Text.Split(' ');
 
-                find = comboOrg.Text.Split(' ');
-                Organizations org = db.Organizations.Find(int.Parse(find[0]));
-
+                // Заполнение данных добавляемой записи
                 sub.SubscriptionDate = DateTime.Now;
                 sub.Months = int.Parse(months.Text);
                 if (discount.Text.Length == 0) sub.Discount = 0;
                 else sub.Discount = int.Parse(discount.Text);
-                sub.Publication = publ.Id;
-                sub.Organization = org.Id;
+                sub.Publication = int.Parse(findPubl[0]);
+                sub.Organization = int.Parse(findOrg[0]);
 
+                // Сохранение изменений
                 db.SaveChanges();
                 Close();
             }
@@ -70,6 +69,7 @@ namespace PracticalWork22
             ComboBoxItem comboItem;
             sub = db.SubscriptionTable.Find(Data.Id);
 
+            // Заполнение выпадающих списков данными из базы данных
             foreach (var i in db.Publications)
             {
                 comboItem = new ComboBoxItem();
@@ -86,10 +86,13 @@ namespace PracticalWork22
                 comboOrg.Items.Add(comboItem);
             }
 
+            // Отображение данных о выбранной записи в полях ввода
             months.Text = sub.Months.ToString();
             discount.Text = sub.Discount.ToString();
+            Id.Text = sub.Id.ToString();
         }
 
+        // Ограничение ввода некорректных значений в поля ввода
         private void discount_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex reg = new Regex(@"[^0-9.]+");

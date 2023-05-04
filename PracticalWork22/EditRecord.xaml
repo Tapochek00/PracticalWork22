@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork22"
         mc:Ignorable="d"
-        Title="Редактировать запись" Height="400" Width="200"
+        Title="Редактировать запись" Height="450" Width="200"
         Background="#FFF9F9F9" Loaded="Window_Loaded"  WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <StackPanel HorizontalAlignment="Center" Grid.Column="0">
+        <Label>Id</Label>
+        <TextBox x:Name="Id" Margin="10" IsReadOnly="True"/>
+        
         <Label>Введите количество месяцев</Label>
         <TextBox x:Name="months" Margin="10" PreviewTextInput="months_PreviewTextInput"/>
 
@@ -20,7 +23,7 @@
         <Label>Выберите организацию</Label>
         <ComboBox x:Name="comboOrg" Margin="10"/>
 
-        <Button x:Name="AddRecord_btn" Content="Сохранить изменения" Width="140" Click="AddRecord_btn_Click" Margin="0, 20">
+        <Button x:Name="EditRecord_btn" Content="Сохранить изменения" Width="140" Click="AddRecord_btn_Click" Margin="0, 20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
