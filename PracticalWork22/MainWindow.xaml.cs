@@ -35,6 +35,7 @@ namespace PracticalWork22
 
         private void mainWin_Initialized(object sender, EventArgs e)
         {
+            // Вход и определение прав пользователя
             Login login = new Login();
             login.ShowDialog();
 
@@ -58,6 +59,7 @@ namespace PracticalWork22
             win.Owner = this;
             win.ShowDialog();
 
+            // Проверка каждой записи в listview до нахождения соответствия
             foreach (var item in listview.Items)
             {
                 var row = (View_1)item;
@@ -91,6 +93,7 @@ namespace PracticalWork22
                 var table = db.View_1.ToList();
                 IEnumerable<View_1> filtered;
 
+                // Добавление совпадений в коллекцию filtered и отображение её в listview
                 if (Data.FiltParam == "Издание") filtered = table.Where(p => p.PublName.Contains(Data.Filter));
                 else filtered = table.Where(p => p.OrgName.Contains(Data.Filter));
                 listview.ItemsSource = filtered;
@@ -135,6 +138,7 @@ namespace PracticalWork22
             Close();
         }
 
+        // Удаление выбранной записи
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result;

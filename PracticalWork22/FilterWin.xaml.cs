@@ -25,7 +25,8 @@ namespace PracticalWork22
         }
 
         private void Search_btn_Click(object sender, RoutedEventArgs e)
-        {
+        {                 
+            // Передача данных в класс Data и закрытие окна
             Data.FiltParam = combo.Text;
             Data.Filter = filt.Text;
             Close();
@@ -34,6 +35,7 @@ namespace PracticalWork22
         OrganizationsEntities db = OrganizationsEntities.GetContext();
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Заполнение выпадающих списков данными из базы данных
             filt.Items.Clear();
             if (combo.Text == "Издание")
             {

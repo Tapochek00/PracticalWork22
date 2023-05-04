@@ -30,6 +30,7 @@ namespace PracticalWork22
         int countLogin = 1;
         OrganizationsEntities db = OrganizationsEntities.GetContext();
 
+        // Функция для генерации и отображения капчи
         void GetCaptcha()
         {
             string masChar = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
@@ -49,6 +50,7 @@ namespace PracticalWork22
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
+            // Поиск пользователя по введённому логину и проверка пароля
             var user = from p in db.User
                        where p.UserLogin == tbLogin.Text &&
                        p.UserPassword == pwBox.Password

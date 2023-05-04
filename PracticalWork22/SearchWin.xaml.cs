@@ -28,6 +28,7 @@ namespace PracticalWork22
         {
             try
             {
+                // Передача данных в класс Data и закрытие окна
                 Data.Date = (DateTime)Date.SelectedDate;
                 Data.PublName = Publication.Text;
                 Data.OrgName = Organization.Text;

@@ -23,7 +23,7 @@
         <Label>Выберите организацию</Label>
         <ComboBox x:Name="comboOrg" Margin="10"/>
 
-        <Button x:Name="EditRecord_btn" Content="Сохранить изменения" Width="140" Click="AddRecord_btn_Click" Margin="0, 20">
+        <Button x:Name="EditRecord_btn" Content="Сохранить изменения" Width="140" Click="EditRecord_btn_Click" Margin="0, 20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
