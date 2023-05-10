@@ -23,8 +23,6 @@
                 <MenuItem Header="Фильтр" Click="Filter_btn_Click"/>
                 <MenuItem Header="Сброс" Click="Reset_btn_Click"/>
                 <MenuItem x:Name="AddMenu" Header="Добавить запись" Click="Add_Click"/>
-                <MenuItem x:Name="OrganizationsMenuBtn" Header="Организации" Click="OrganizationsMenuBtn_Click"/>
-                <MenuItem x:Name="PublicationsMenuBtn" Header="Издания" Click="PublicationsMenuBtn_Click"/>
                 <MenuItem x:Name="EditMenu" Header="Редактировать запись" Click="Edit_Click"/>
                 <MenuItem x:Name="DeleteMenu" Header="Удалить запись" Click="Delete_Click"/>
             </MenuItem>
@@ -72,48 +70,18 @@
         </ListView>
         
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-            <Button x:Name="Search_btn" Content="Поиск" Margin="0, 0, 10, 0" FontSize="16" Click="Search_btn_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="Filter_btn" Content="Фильтр" FontSize="16" Margin="10, 10" Click="Filter_btn_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="Reset_btn" Content="Сброс" FontSize="16" Margin="10, 10" Click="Reset_btn_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="Add" Content="Добавить запись" Width="160" FontSize="16" Margin="10, 10" Click="Add_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="Edit" Content="Редактировать запись" Width="200" FontSize="16" Margin="10, 10" Click="Edit_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="Delete" Content="Удалить запись" Width="200" FontSize="16" Margin="10, 10" Click="Delete_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+            <Button x:Name="Search_btn" Content="Поиск" Margin="0, 0, 10, 0" FontSize="16" Click="Search_btn_Click" Width="100" Height="35"/>
+
+            <Button x:Name="Filter_btn" Content="Фильтр" FontSize="16" Margin="10, 10" Click="Filter_btn_Click" Height="35"/>
+
+            <Button x:Name="Reset_btn" Content="Сброс" FontSize="16" Margin="10, 10" Click="Reset_btn_Click" Height="35"/>
+
+            <Button x:Name="Add" Content="Добавить запись" Width="170" FontSize="16" Margin="10, 10" Click="Add_Click" Height="35"/>
+
+            <Button x:Name="Edit" Content="Редактировать запись" Width="230" FontSize="16" Margin="10, 10" Click="Edit_Click" Height="35"/>
+
+            <Button x:Name="Delete" Content="Удалить запись" Width="200" FontSize="16" Margin="10, 10" Click="Delete_Click" Height="35"/>
+
         </StackPanel>
     </Grid>
 </Window>
